@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WarArt.Models;
 
 namespace WarArt
 {
@@ -15,6 +16,9 @@ namespace WarArt
     {
         List<State> StateList = new List<State>();
         int currentState = 0;
+        int elapsedSeconds = 0;
+        DateTime start = DateTime.Now;
+        DateTime end;
         Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
 
         public TelaPrincipal()
@@ -28,51 +32,65 @@ namespace WarArt
             this.TopMost = true;
             this.BackColor = Color.FromName("SlateBlue");
 
-            StateList.Add(new State("Paused", 0, Color.FromName("AliceBlue"), Color.FromName("Black"))); // White
-            StateList.Add(new State("War", 1, Color.FromName("Crimson"), Color.FromName("White"))); // Red
-            StateList.Add(new State("Art", 2, Color.FromName("Blue"), Color.FromName("White"))); // Blue
-            StateList.Add(new State("Half", 3, Color.FromName("SlateBlue"), Color.FromName("White"))); // Purple
+            StateList.Add(new State("Paused", Color.FromName("AliceBlue"), Color.FromName("Black"))); // White
+            StateList.Add(new State("War", Color.FromName("Crimson"), Color.FromName("White"))); // Red
+            StateList.Add(new State("Art", Color.FromName("Blue"), Color.FromName("White"))); // Blue
+            StateList.Add(new State("Half", Color.FromName("SlateBlue"), Color.FromName("White"))); // Purple
             loadState();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MouseEventArgs me = (MouseEventArgs)e;
+
+            switch (me.Button)
+            {
+
+                case MouseButtons.Left:
+                    Console.WriteLine("left");
+                    break;
+
+                case MouseButtons.Right:
+                    Console.WriteLine("right");
+                    break;
+
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+            saveState();
+            loadState();
+        }
+
+        private void saveState()
+        {
+            watch.Stop();
+            elapsedSeconds = (int)watch.ElapsedMilliseconds / 1000;
+
+            end = DateTime.Now;
+
+            Console.WriteLine(currentState.ToString() + "  a  " + StateList[currentState].name);
+            if (currentState != 0 && elapsedSeconds > 10) // Só grava no banco se ficou mais de 10 segundos na atividade
+            {
+                DalHelper.Add(new Models.Historico(0, StateList[currentState].name, elapsedSeconds, start, end));
+            }
+            ////////////////////////////////
+            watch = System.Diagnostics.Stopwatch.StartNew();
+            start = DateTime.Now;
             currentState++;
-            if(currentState >= StateList.Count)
+            if (currentState >= StateList.Count)
             {
                 currentState = 0;
             }
-            loadState();
         }
 
         private void loadState()
         {
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            
-            button1.Text = StateList[currentState].name + " - " + elapsedMs.ToString();
+            button1.Text = StateList[currentState].name + " - " + elapsedSeconds.ToString();
             button1.BackColor = StateList[currentState].backColor;
             button1.ForeColor = StateList[currentState].foreColor;
-
-            watch = System.Diagnostics.Stopwatch.StartNew();
         }
 
-    }
-
-    public  class State
-    {
-        public string name;
-        public int code;
-        public Color backColor;
-        public Color foreColor;
-
-        public State(string name, int code, Color color, Color frontColor)
-        {
-            this.name = name;
-            this.code = code;
-            this.backColor = color;
-            this.foreColor = frontColor;
-        }
     }
 
 }
