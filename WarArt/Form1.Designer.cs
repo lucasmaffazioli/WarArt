@@ -34,6 +34,7 @@ namespace WarArt
             // 
             // button1
             // 
+            this.button1.AutoSize = true;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 76);
@@ -56,6 +57,7 @@ namespace WarArt
             this.Text = "WarArt";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
