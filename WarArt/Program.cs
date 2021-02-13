@@ -18,7 +18,7 @@ namespace WarArt
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(topMostForm);
-            Application.Run(new Form1());
+            Application.Run(new TelaPrincipal());
         }
     }
 }
