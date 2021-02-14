@@ -1,7 +1,7 @@
 ﻿
 namespace WarArt
 {
-    partial class TelaPrincipal
+    partial class MonitorScreen
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -41,9 +41,10 @@ namespace WarArt
             this.button1.TabIndex = 0;
             this.button1.Text = "Alterar estado";
             this.button1.UseVisualStyleBackColor = true;
+            //this.button1.Click += new System.EventHandler(this.button1_Click_1);
             this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_Click);
             // 
-            // TelaPrincipal
+            // MonitorScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -52,7 +53,7 @@ namespace WarArt
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaPrincipal";
+            this.Name = "MonitorScreen";
             this.Opacity = 0.5D;
             this.Text = "WarArt";
             this.Load += new System.EventHandler(this.Form1_Load);

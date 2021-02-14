@@ -14,17 +14,17 @@ namespace WarArt
         private static SQLiteConnection DbConnection()
         {
 
-            if (!System.IO.File.Exists(@"C:\temp\Data.sqlite3"))
+            if (!System.IO.File.Exists(@"db.sqlite3"))
             {
                 Console.WriteLine("Just entered to create DB");
-                SQLiteConnection.CreateFile(@"C:\temp\Data.sqlite3");
+                SQLiteConnection.CreateFile(@"db.sqlite3");
 
                 CriarTabelaSQlite();
                 return sqliteConnection;
             }
             else
             {
-                sqliteConnection = new SQLiteConnection("Data Source=c:\\temp\\Data.sqlite3; Version=3;");
+                sqliteConnection = new SQLiteConnection("Data Source=db.sqlite3; Version=3;");
                 sqliteConnection.Open();
                 return sqliteConnection;
             }
@@ -37,11 +37,7 @@ namespace WarArt
             {
                 using (var cmd = DbConnection().CreateCommand())
                 {
-                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS Historico(id INTEGER PRIMARY KEY, state INTEGER, seconds INTEGER, start TEXT, end TEXT)";
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS States(id INTEGER PRIMARY KEY, state TEXT)";
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = "INSERT INTO States(0, '')";
+                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS Historico(state TEXT, seconds INTEGER, start TEXT, end TEXT)";
                     cmd.ExecuteNonQuery();
                 }
             }

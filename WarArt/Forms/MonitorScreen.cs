@@ -12,16 +12,17 @@ using WarArt.Models;
 
 namespace WarArt
 {
-    public partial class TelaPrincipal : Form
+    public partial class MonitorScreen : Form
     {
         List<State> StateList = new List<State>();
+        string lastOperation = "";
         int currentState = 0;
         int elapsedSeconds = 0;
         DateTime start = DateTime.Now;
         DateTime end;
         Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
 
-        public TelaPrincipal()
+        public MonitorScreen()
         {
             InitializeComponent();
         }
@@ -45,17 +46,14 @@ namespace WarArt
 
             switch (me.Button)
             {
-
                 case MouseButtons.Left:
                     Console.WriteLine("left");
                     changeState(true);
                     break;
-
                 case MouseButtons.Right:
                     Console.WriteLine("right");
                     changeState(false);
                     break;
-
                 default:
                     Console.WriteLine("Default case");
                     break;
@@ -70,10 +68,15 @@ namespace WarArt
 
             end = DateTime.Now;
 
-            Console.WriteLine(currentState.ToString() + "  a  " + StateList[currentState].name);
-            if (save && currentState != 0 && elapsedSeconds > 10) // Só grava no banco se ficou mais de 10 segundos na atividade
+            // Console.WriteLine(currentState.ToString() + "  a  " + StateList[currentState].name);
+            if (save && currentState != 0 && elapsedSeconds > 3) // Só grava no banco se ficou mais de 10 segundos na atividade
             {
+                lastOperation = "Saved to db!";
                 DalHelper.Add(new Models.Historico(0, StateList[currentState].name, elapsedSeconds, start, end));
+            }
+            else
+            {
+                lastOperation = "Ignored";
             }
             ////////////////////////////////
             watch = System.Diagnostics.Stopwatch.StartNew();
@@ -87,11 +90,10 @@ namespace WarArt
 
         private void loadState()
         {
-            button1.Text = StateList[currentState].name + " - " + elapsedSeconds.ToString();
+            button1.Text = StateList[currentState].name + Environment.NewLine + "Last record:" + Environment.NewLine + lastOperation + " - " + elapsedSeconds.ToString();
             button1.BackColor = StateList[currentState].backColor;
             button1.ForeColor = StateList[currentState].foreColor;
         }
-
     }
 
 }
