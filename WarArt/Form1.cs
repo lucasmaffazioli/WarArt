@@ -48,21 +48,22 @@ namespace WarArt
 
                 case MouseButtons.Left:
                     Console.WriteLine("left");
+                    changeState(true);
                     break;
 
                 case MouseButtons.Right:
                     Console.WriteLine("right");
+                    changeState(false);
                     break;
 
                 default:
                     Console.WriteLine("Default case");
                     break;
             }
-            saveState();
             loadState();
         }
 
-        private void saveState()
+        private void changeState(bool save)
         {
             watch.Stop();
             elapsedSeconds = (int)watch.ElapsedMilliseconds / 1000;
@@ -70,7 +71,7 @@ namespace WarArt
             end = DateTime.Now;
 
             Console.WriteLine(currentState.ToString() + "  a  " + StateList[currentState].name);
-            if (currentState != 0 && elapsedSeconds > 10) // Só grava no banco se ficou mais de 10 segundos na atividade
+            if (save && currentState != 0 && elapsedSeconds > 10) // Só grava no banco se ficou mais de 10 segundos na atividade
             {
                 DalHelper.Add(new Models.Historico(0, StateList[currentState].name, elapsedSeconds, start, end));
             }

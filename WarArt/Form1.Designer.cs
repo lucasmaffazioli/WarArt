@@ -39,9 +39,9 @@ namespace WarArt
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 76);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Me clique";
+            this.button1.Text = "Alterar estado";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_Click);
             // 
             // TelaPrincipal
             // 
