@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller.cs" />
     <Compile Include="DalHelper.cs" />
     <Compile Include="Forms\MainMenuScreen.cs">
       <SubType>Form</SubType>

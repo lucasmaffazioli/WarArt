@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WarArt.Forms;
 
 namespace WarArt
 {
@@ -26,7 +27,8 @@ namespace WarArt
 
         private void buttonResults_Click(object sender, EventArgs e)
         {
-
+            ResultsScreen resultsScreen = new ResultsScreen();
+            resultsScreen.Show();
         }
     }
 }

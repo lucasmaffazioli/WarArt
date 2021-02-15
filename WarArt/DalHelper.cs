@@ -47,7 +47,7 @@ namespace WarArt
             }
         }
 
-        public static DataTable GetHistoricos()
+        public static DataTable GetAllHistoricos()
         {
             SQLiteDataAdapter da = null;
             DataTable dt = new DataTable();
@@ -66,6 +66,27 @@ namespace WarArt
                 throw ex;
             }
         }
+
+        public static DataTable GetDailySummary()
+        {
+            SQLiteDataAdapter da = null;
+            DataTable dt = new DataTable();
+            try
+            {
+                using (var cmd = DbConnection().CreateCommand())
+                {
+                    cmd.CommandText = "SELECT state, strftime('%d-%m-%Y', start) date, SUM(seconds) totalTime FROM Historico group by state, date ORDER BY date DESC, state";
+                    da = new SQLiteDataAdapter(cmd.CommandText, DbConnection());
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static DataTable GetHistorico(int id)
         {
             SQLiteDataAdapter da = null;

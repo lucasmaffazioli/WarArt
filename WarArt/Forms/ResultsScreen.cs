@@ -12,9 +12,17 @@ namespace WarArt.Forms
 {
     public partial class ResultsScreen : Form
     {
+        Controller controller = new Controller();
         public ResultsScreen()
         {
             InitializeComponent();
+
+            List<string> listSummary = controller.getAllDays();
+            foreach (var summary in listSummary)
+            {
+                listView.Items.Add(summary);
+            }
         }
+
     }
 }
