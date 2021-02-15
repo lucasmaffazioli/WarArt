@@ -29,8 +29,10 @@ namespace WarArt
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuScreen));
             this.buttonMonitor = new System.Windows.Forms.Button();
             this.buttonResults = new System.Windows.Forms.Button();
+            this.label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonMonitor
@@ -53,16 +55,28 @@ namespace WarArt
             this.buttonResults.UseVisualStyleBackColor = true;
             this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
             // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(179, 12);
+            this.label.MaximumSize = new System.Drawing.Size(600, 0);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(590, 78);
+            this.label.TabIndex = 2;
+            this.label.Text = resources.GetString("label.Text");
+            // 
             // MainMenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label);
             this.Controls.Add(this.buttonResults);
             this.Controls.Add(this.buttonMonitor);
             this.Name = "MainMenuScreen";
             this.Text = "WarArt";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,5 +84,6 @@ namespace WarArt
 
         private System.Windows.Forms.Button buttonMonitor;
         private System.Windows.Forms.Button buttonResults;
+        private System.Windows.Forms.Label label;
     }
 }

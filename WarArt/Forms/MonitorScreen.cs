@@ -93,7 +93,7 @@ namespace WarArt
 
         private void loadState()
         {
-            button1.Text = StateList[currentState].name + Environment.NewLine + "Last record:" + Environment.NewLine + lastOperation + " - " + elapsedSeconds.ToString();
+            button1.Text = StateList[currentState].name + Environment.NewLine + Environment.NewLine + "Last streak:" + Environment.NewLine + lastOperation + " - " + elapsedSeconds.ToString() + "s";
             button1.BackColor = StateList[currentState].backColor;
             button1.ForeColor = StateList[currentState].foreColor;
         }
