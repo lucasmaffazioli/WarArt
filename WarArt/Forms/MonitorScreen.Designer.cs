@@ -41,7 +41,6 @@ namespace WarArt
             this.button1.TabIndex = 0;
             this.button1.Text = "Alterar estado";
             this.button1.UseVisualStyleBackColor = true;
-            //this.button1.Click += new System.EventHandler(this.button1_Click_1);
             this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_Click);
             // 
             // MonitorScreen
@@ -52,10 +51,10 @@ namespace WarArt
             this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MonitorScreen";
             this.Opacity = 0.5D;
             this.Text = "WarArt";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -24,5 +24,10 @@ namespace WarArt
 
             return list;
         }
+
+        public void resetData()
+        {
+            DalHelper.DeleteAllHistoricos();
+        }
     }
 }

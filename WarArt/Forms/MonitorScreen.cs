@@ -33,7 +33,6 @@ namespace WarArt
         private void Form1_Load(object sender, EventArgs e)
         {
             this.MinimumSize = new Size(10, 70);
-            this.TopMost = true;
             this.BackColor = Color.FromName("SlateBlue");
 
             StateList.Add(new State("Paused", Color.FromName("AliceBlue"), Color.FromName("Black"))); // White
@@ -72,7 +71,7 @@ namespace WarArt
             end = DateTime.Now;
 
             // Console.WriteLine(currentState.ToString() + "  a  " + StateList[currentState].name);
-            if (save && currentState != 0 && elapsedSeconds > 3) // Só grava no banco se ficou mais de 10 segundos na atividade
+            if (save && currentState != 0 && elapsedSeconds > 3) // Só grava no banco se ficou mais de 3 segundos na atividade
             {
                 lastOperation = "Saved to db!";
                 DalHelper.Add(new Models.Historico(0, StateList[currentState].name, elapsedSeconds, start, end));

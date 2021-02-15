@@ -67,6 +67,24 @@ namespace WarArt
             }
         }
 
+        public static void DeleteAllHistoricos()
+        {
+            SQLiteDataAdapter da = null;
+            DataTable dt = new DataTable();
+            try
+            {
+                using (var cmd = DbConnection().CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Historico";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static DataTable GetDailySummary()
         {
             SQLiteDataAdapter da = null;
@@ -86,6 +104,8 @@ namespace WarArt
                 throw ex;
             }
         }
+
+
 
         public static DataTable GetHistorico(int id)
         {

@@ -13,6 +13,7 @@ namespace WarArt
 {
     public partial class MainMenuScreen : Form
     {
+        Controller controller = new Controller();
         MonitorScreen monitorScreen = new MonitorScreen();
 
         public MainMenuScreen()
@@ -33,6 +34,21 @@ namespace WarArt
         {
             ResultsScreen resultsScreen = new ResultsScreen();
             resultsScreen.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete all data?",
+                                     "Reset",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                controller.resetData();
+            }
+            else
+            {
+                // If 'No', do something here.
+            }
         }
     }
 }
