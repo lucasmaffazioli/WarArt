@@ -19,7 +19,7 @@ namespace WarArt
 
             for (int x = 0; x < dt.Rows.Count; x++)
             {
-                list.Add(dt.Rows[x].Field<string>("date") + " - " + dt.Rows[x].Field<string>("state") + " - " + dt.Rows[x].Field<Int64>("totalTime").ToString());
+                list.Add(dt.Rows[x].Field<string>("date") + " - " + dt.Rows[x].Field<string>("state") + " - " + dt.Rows[x].Field<string>("totalTime").ToString());
             }
 
             return list;

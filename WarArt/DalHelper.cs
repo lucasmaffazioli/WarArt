@@ -75,7 +75,7 @@ namespace WarArt
             {
                 using (var cmd = DbConnection().CreateCommand())
                 {
-                    cmd.CommandText = "SELECT state, strftime('%d-%m-%Y', start) date, SUM(seconds) totalTime FROM Historico group by state, date ORDER BY date DESC, state";
+                    cmd.CommandText = "SELECT state, strftime('%d-%m-%Y', start) date, time(SUM(seconds), 'unixepoch') totalTime FROM Historico group by state, date ORDER BY date DESC, state";
                     da = new SQLiteDataAdapter(cmd.CommandText, DbConnection());
                     da.Fill(dt);
                     return dt;
