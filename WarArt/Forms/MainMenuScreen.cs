@@ -17,7 +17,11 @@ namespace WarArt
 
         public MainMenuScreen()
         {
+
             InitializeComponent();
+#if DEBUG
+            this.Text = "DEBUG";
+#endif
         }
 
         private void button1_Click(object sender, EventArgs e)

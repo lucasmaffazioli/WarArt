@@ -61,7 +61,7 @@ namespace WarArt
             this.Controls.Add(this.buttonResults);
             this.Controls.Add(this.buttonMonitor);
             this.Name = "MainMenuScreen";
-            this.Text = "MainMenuScreen";
+            this.Text = "WarArt";
             this.ResumeLayout(false);
 
         }

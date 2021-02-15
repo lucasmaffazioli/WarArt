@@ -25,6 +25,9 @@ namespace WarArt
         public MonitorScreen()
         {
             InitializeComponent();
+#if DEBUG
+            this.Text = "DEBUG";
+#endif
         }
 
         private void Form1_Load(object sender, EventArgs e)

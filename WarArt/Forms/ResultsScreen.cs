@@ -16,6 +16,9 @@ namespace WarArt.Forms
         public ResultsScreen()
         {
             InitializeComponent();
+#if DEBUG
+            this.Text = "DEBUG";
+#endif
 
             List<string> listSummary = controller.getAllDays();
             foreach (var summary in listSummary)
