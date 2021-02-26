@@ -85,6 +85,7 @@ namespace WarArt
             this.Controls.Add(this.label);
             this.Controls.Add(this.buttonResults);
             this.Controls.Add(this.buttonMonitor);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainMenuScreen";
             this.Text = "WarArt";
             this.ResumeLayout(false);
